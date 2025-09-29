@@ -25,6 +25,7 @@ export const TOOL_NAMES = {
     INJECT_SCRIPT: 'chrome_inject_script',
     SEND_COMMAND_TO_INJECT_SCRIPT: 'chrome_send_command_to_inject_script',
     CONSOLE: 'chrome_console',
+    ABSTRACT_WEB: 'chrome_abstract_web',
   },
 };
 
@@ -529,6 +530,26 @@ export const TOOL_SCHEMAS: Tool[] = [
         maxMessages: {
           type: 'number',
           description: 'Maximum number of console messages to capture (default: 100)',
+        },
+      },
+      required: [],
+    },
+  },
+  {
+    name: TOOL_NAMES.BROWSER.ABSTRACT_WEB,
+    description:
+      'Retrieves the human readable text information from the web, keeping the hierarchy with indent, instead of getting back all the html labels.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        url: {
+          type: 'string',
+          description: 'URL to fetch content from. If not provided, uses the current active tab',
+        },
+        selector: {
+          type: 'string',
+          description:
+            'CSS selector to get content from a specific element. If provided, only content from this element will be returned',
         },
       },
       required: [],

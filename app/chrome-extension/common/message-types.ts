@@ -41,6 +41,7 @@ export const CONTENT_MESSAGE_TYPES = {
   KEYBOARD_HELPER_PING: 'keyboard_helper_ping',
   SCREENSHOT_HELPER_PING: 'screenshot_helper_ping',
   INTERACTIVE_ELEMENTS_HELPER_PING: 'interactive_elements_helper_ping',
+  ABSTRACT_WEB_GET_CONTENT: 'abstractWebGetContent',
 } as const;
 
 // Tool action message types (for chrome.runtime.sendMessage)
@@ -70,6 +71,9 @@ export const TOOL_MESSAGE_TYPES = {
   // Semantic similarity engine
   SIMILARITY_ENGINE_INIT: 'similarityEngineInit',
   SIMILARITY_ENGINE_COMPUTE_BATCH: 'similarityEngineComputeBatch',
+
+  // Abstract web content
+  ABSTRACT_WEB_GET_CONTENT: 'abstractWebGetContent',
 } as const;
 
 // Type unions for type safety
