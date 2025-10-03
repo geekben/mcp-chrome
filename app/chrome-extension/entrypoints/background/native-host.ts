@@ -11,7 +11,7 @@ import {
 import { handleCallTool } from './tools';
 
 let nativePort: chrome.runtime.Port | null = null;
-export const HOST_NAME = NATIVE_HOST.NAME;
+export const HOST_NAME = 'com.chromemcp.nativehost.v2';
 
 /**
  * Server status management interface

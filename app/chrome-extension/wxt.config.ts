@@ -10,6 +10,7 @@ const CHROME_EXTENSION_KEY = process.env.CHROME_EXTENSION_KEY;
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
+  outDir: 'output',
   modules: ['@wxt-dev/module-vue'],
   runner: {
     // 方案1: 禁用自动启动（推荐）
@@ -75,10 +76,6 @@ export default defineConfig({
           {
             src: ['workers/*'],
             dest: 'workers',
-          },
-          {
-            src: '_locales/**/*',
-            dest: '_locales',
           },
         ],
       }) as any,
