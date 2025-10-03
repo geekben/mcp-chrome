@@ -1280,15 +1280,12 @@ export async function getGlobalVectorDatabase(
       `VectorDatabase: Dimension changed from ${currentDimension} to ${newDimension}, recreating instance`,
     );
 
-    // Perform comprehensive cleanup to ensure all old data is removed
+    // Clean up old instance - this will clean up index files and document mappings
     try {
-      await clearAllVectorData(); // Call the comprehensive cleanup function
-      console.log(
-        'VectorDatabase: Successfully performed comprehensive cleanup for dimension change',
-      );
+      await globalVectorDatabase.clear();
+      console.log('VectorDatabase: Successfully cleared old instance for dimension change');
     } catch (error) {
-      console.error('VectorDatabase: Error during comprehensive cleanup:', error);
-      // Even if cleanup fails, we should still try to proceed with a new instance
+      console.warn('VectorDatabase: Error during cleanup:', error);
     }
 
     globalVectorDatabase = null;
