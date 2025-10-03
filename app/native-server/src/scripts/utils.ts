@@ -87,8 +87,7 @@ export function getSystemManifestPath(): string {
  */
 export async function getMainPath(): Promise<string> {
   try {
-    // Correctly point to the 'dist' directory where the script is copied.
-    const packageDistDir = path.join(__dirname, '..', '..', 'dist');
+    const packageDistDir = path.join(__dirname, '..');
     const wrapperScriptName = process.platform === 'win32' ? 'run_host.bat' : 'run_host.sh';
     const absoluteWrapperPath = path.resolve(packageDistDir, wrapperScriptName);
     return absoluteWrapperPath;
@@ -245,18 +244,6 @@ export async function tryRegisterUserLevelHost(): Promise<boolean> {
 
     // 5. 写入清单文件
     await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
-
-    // 6. [macOS/Linux] 确保清单文件具有正确的权限
-    if (os.platform() === 'darwin' || os.platform() === 'linux') {
-      try {
-        fs.chmodSync(manifestPath, '644');
-        console.log(colorText('✓ Set manifest file permissions to 644', 'green'));
-      } catch (err: any) {
-        console.warn(
-          colorText(`⚠️ Unable to set permissions for manifest file: ${err.message}`, 'yellow'),
-        );
-      }
-    }
 
     if (os.platform() === 'win32') {
       const registryKey = `HKCU\\Software\\Google\\Chrome\\NativeMessagingHosts\\${HOST_NAME}`;
